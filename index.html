@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Star Wars</title>
+  </head>
+  <body>
+    <div class="big-container">
+      <h1>Star Wars Character Search</h1>
+      <form id="search-bar">
+        <input type="text" placeholder="Search the galaxy..." />
+        <button type="submit">Search</button>
+      </form>
+      <div class="info-panel">
+        <div class="character-box" id="character-box">
+          <button class="clear-button"></button>
+        </div>
+        <div class="image-box" id="image-box"></div>
+      </div>
+    </div>
+  </body>
+</html>
