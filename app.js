@@ -21,6 +21,7 @@ function getCharacters(searchTerm) {
       const results = response.data.results;
       characterBox.innerHTML = "";
       if (results && results.length > 0) {
+        document.querySelector(".info-panel").style.display = "flex";
         for (let i = 0; i < results.length; i++) {
           const character = document.createElement("div");
           character.classList.add("character");
