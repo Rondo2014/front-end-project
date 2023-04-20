@@ -132,6 +132,8 @@ h2 {
   order: 1;
   border-radius: 5px;
   border: 1px solid powderblue;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .character-image {
