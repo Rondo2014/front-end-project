@@ -1,5 +1,7 @@
 const searchBar = document.getElementById("search-bar");
 const characterBox = document.getElementById("character-box");
+const body = document.querySelector("body");
+const imageBox = document.getElementById("image-box");
 
 searchBar.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -10,6 +12,17 @@ searchBar.addEventListener("submit", function (event) {
 function getCharacterId(url) {
   const idRegExp = /\/(\d+)\/$/;
   return url.match(idRegExp)[1];
+}
+function showInfoPanel() {
+  let panel = document.querySelector(".info-panel");
+  let opacity = 0;
+  let intervalId = setInterval(function () {
+    opacity += 0.1;
+    panel.style.opacity = opacity;
+    if (opacity >= 1) {
+      clearInterval(intervalId);
+    }
+  }, 100);
 }
 
 function getCharacters(searchTerm) {
@@ -33,6 +46,7 @@ function getCharacters(searchTerm) {
                 <p>Gender: ${results[i].gender}</p>
                 <p>Eye color: ${results[i].eye_color}</p>
                 <p>Hair color: ${results[i].hair_color}</p>
+                <button class="wookieepedia-btn">Wookieepedia</button>
                 <p>Home planet: </p>
               </a>
             `;
@@ -47,10 +61,18 @@ function getCharacters(searchTerm) {
           const imageUrl = `https://starwars-visualguide.com/assets/img/characters/${getCharacterId(
             results[i].url
           )}.jpg`;
-          const imageBox = document.getElementById("image-box");
           imageBox.style.backgroundImage = `url('${imageUrl}')`;
+          const wookieepediaBtn = character.querySelector(".wookieepedia-btn");
+          wookieepediaBtn.addEventListener("click", function () {
+            const characterName = results[i].name;
+            const wookieepediaUrl = `https://starwars.fandom.com/wiki/${encodeURIComponent(
+              characterName.replace(/\s+/g, "_")
+            )}`;
+            window.open(wookieepediaUrl);
+          });
         }
       }
     })
     .catch((error) => console.log(error));
+  showInfoPanel();
 }
