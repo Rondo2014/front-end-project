@@ -39,7 +39,8 @@ function showInfoPanel() {
 
 function getCharacters(searchTerm) {
   const baseUrl = "https://swapi.dev/api/people/?search=";
-  const url = baseUrl + searchTerm;
+  const encodedSearchTerm = encodeURIComponent(searchTerm);
+  const url = baseUrl + encodedSearchTerm;
   axios
     .get(url)
     .then((response) => {
@@ -83,6 +84,10 @@ function getCharacters(searchTerm) {
             window.open(wookieepediaUrl);
           });
         }
+      } else {
+        // No results found, display an error message
+        characterBox.innerHTML = "<p>No results found.</p>";
+        document.querySelector(".info-panel").style.display = "none";
       }
     })
     .catch((error) => console.log(error));
